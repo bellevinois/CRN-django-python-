@@ -1,0 +1,82 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Клиент:</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="">Изменить Клиента</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="">Удалить Клиента</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Информация</h5>
+			<hr>
+			<p>Email: </p>
+			<p>ФИО: {{client.name}} </p>
+			<p>Телефон: {{client.telephone}} </p>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Количество Заказов</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{commande_totale}}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					 <th>Продукты</th>
+                    <th>Дата заказа</th>
+                    <th>Статус</th>
+                    <th>Обновление</th>
+                    <th>Удалить</th>
+				</tr>
+				{% for commande in commande %}
+
+				<tr>
+					<th>{{commande.produit}}</th>
+                    <th>{{commande.date_creation}}</th>
+                    <th>{{commande.statut}}</th>
+                    <th><a href=""> Обновление</a></th>
+                    <th><a href="">Удалить</a></th>
+				</tr>
+
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+
+{%endblock %}

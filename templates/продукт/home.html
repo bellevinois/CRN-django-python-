@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+    <br>
+    <div class="row">
+        <div class="col-md-5">
+            <h5>Клиент</h5>
+            <hr>
+            <div class="card card-body">
+                <a class="btn btn-primary btn-sn btn-block" href="{% url 'ajout_clients' %}">Создать новый клиента</a>
+                <table class="table table-sn">
+                    <tr>
+                        <th>ID</th>
+                        <th>Клиенты</th>
+                        <th>telephone</th>
+                        <th>Details</th>
+                    </tr>
+                    {% for client in clients %}
+                     <tr>
+                     <th><a href="{% url 'client' client.id %}"> {{client.id}}</a></th>
+                     <th> {{client.name}}</th>
+                     <th> {{client.telephone}}</th>
+                     <th><a class='btn btn-sn btn-info' href="{% url 'client' client.id %}"> Details</a></th>
+                     </tr>
+
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h5>Все заказы</h5>
+            <hr>
+            <div class="card card-body">
+              <a class="btn btn-primary btn-sn btn-block" href="{% url 'ajout_commande' %}">добавить новый заказ</a>
+              <table class="table table-sn">
+                    <tr>
+                        <th>Продукты</th>
+                        <th>Клиент</th>
+                        <th>Дата заказа</th>
+                        <th> Статус</th>
+                         <th>Изминение</th>
+                        <th>Удаление</th>
+                    </tr>
+                    {% for commande in commandes %}
+                        <tr>
+                            <th>{{commande.produit}}</th>
+                            <th>{{commande.client}}</th>
+                            <th>{{commande.date_creation}}</th>
+                            <th>{{commande.statut}}</th>
+                            <th><a href="{% url 'modifier_commande' commande.id %}">Изменить</a></th>
+                            <th><a href="{% url 'supprimer_commande' commande.id %}">Удалить</a></th>
+
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{%endblock %}
